@@ -1,77 +1,97 @@
-```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>قرايتي | السنة الأولى ثانوي</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #dceeff, #ffe1ef);
-      text-align: center;
-      color: #34466b;
-    }
-    header {
-      padding: 35px 15px;
-      background: #789de8;
-      color: white;
-      border-radius: 0 0 30px 30px;
-    }
-    h1 { font-size: 38px; }
-    p { font-size: 18px; }
-    .container { padding: 25px 15px; }
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 25px;
-    }
-    .card {
-      background: white;
-      border-radius: 20px;
-      padding: 25px 15px;
-      width: 130px;
-      box-shadow: 0 5px 15px #9aadd044;
-    }
-    .card span { font-size: 38px; }
-    .card h2 { font-size: 20px; }
-    footer { padding: 25px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قرايتي - السنة الأولى ثانوي</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f6f5ff;color:#344466}
+header{background:linear-gradient(120deg,#7299ed,#eaa9d0);color:white;text-align:center;padding:30px 15px 40px;border-radius:0 0 30px 30px}
+header h1{font-size:42px;margin:8px}
+header p{font-size:18px}
+main{max-width:1000px;margin:auto;padding:22px 15px}
+.welcome{text-align:center;background:white;padding:22px;border-radius:22px;box-shadow:0 5px 18px #52618b15}
+button{font-family:inherit;cursor:pointer;border:0;border-radius:14px;padding:12px 20px;font-size:17px;background:#eaa9d0;color:#49365f}
+h2{text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px}
+.card{border:0;background:white;border-radius:20px;padding:20px 10px;text-align:center;box-shadow:0 5px 15px #52618b12;cursor:pointer;color:#344466}
+.card:hover{transform:translateY(-3px)}
+.card .emoji{font-size:35px}
+.card h3{font-size:17px}
+#content{margin-top:22px}
+.item{background:white;margin:10px 0;padding:16px;border-radius:14px}
+.hidden{display:none}
+.back{display:block;margin:15px auto}
+footer{text-align:center;padding:25px;color:#65749a}
+</style>
 </head>
 <body>
-  <header>
-    <h1>🌸 قرايتي 🌸</h1>
-    <p>رفيقك في النجاح والتفوق</p>
-    <p>السنة الأولى ثانوي - شعبة الآداب</p>
-  </header>
-
-  <div class="container">
-    <h2>مرحباً بك في موقعنا الدراسي 💗</h2>
-    <p>اختاري القسم الذي تريدين مراجعته</p>
-
-    <div class="cards">
-      <div class="card">
-        <span>📚</span>
-        <h2>دروس</h2>
-        <p>ملخصات ودروس</p>
-      </div>
-      <div class="card">
-        <span>📝</span>
-        <h2>فروض</h2>
-        <p>تدربي واختبري نفسك</p>
-      </div>
-      <div class="card">
-        <span>🎓</span>
-        <h2>اختبارات</h2>
-        <p>استعدي للامتحانات</p>
-      </div>
-    </div>
-  </div>
-
-  <footer>💙 بالتوفيق لكل تلاميذ قرايتي 💗</footer>
+<header>
+<h1>🌸 قرايتي 🌸</h1>
+<p>طريقك نحو النجاح والتفوق</p>
+<p>السنة الأولى ثانوي · شعبة الآداب</p>
+</header>
+<main>
+<section class="welcome" id="welcome">
+<h2>أهلًا بكِ في عالم قرايتي 💗</h2>
+<p>تعلّمي، راجعي، وتقدّمي نحو أحلامك!</p>
+<button onclick="document.getElementById('subjects').scrollIntoView({behavior:'smooth'})">ابدئي الدراسة 📚</button>
+</section>
+<section id="subjects">
+<h2>🎀 اختاري مادتك الدراسية</h2>
+<div class="grid" id="subjectGrid"></div>
+</section>
+<section id="content" class="hidden">
+<h2 id="subjectTitle"></h2>
+<p style="text-align:center">اختاري القسم الذي تريدين مراجعته</p>
+<div class="grid">
+<button class="card" onclick="showSection('الدروس','📚')"><span class="emoji">📚</span><h3>الدروس</h3></button>
+<button class="card" onclick="showSection('الفروض','📝')"><span class="emoji">📝</span><h3>الفروض</h3></button>
+<button class="card" onclick="showSection('الاختبارات','🎓')"><span class="emoji">🎓</span><h3>الاختبارات</h3></button>
+</div>
+<div id="resources"></div>
+<button class="back" onclick="goBack()">العودة إلى المواد ↩️</button>
+</section>
+</main>
+<footer>💙 قرايتي — معًا نحو النجاح 💗</footer>
+<script>
+const subjects=[
+["اللغة العربية","📖"],["اللغة الفرنسية","🇫🇷"],["اللغة الإنجليزية","🔤"],
+["التاريخ والجغرافيا","🌍"],["العلوم الإسلامية","🌙"],["الفلسفة","💭"],
+["الرياضيات","➗"],["علوم الطبيعة والحياة","🌿"],["الإعلام الآلي","💻"],
+["التربية الفنية التشكيلية","🎨"]
+];
+let currentSubject="";
+const grid=document.getElementById("subjectGrid");
+subjects.forEach(([name,icon])=>{
+const b=document.createElement("button");
+b.className="card";
+b.innerHTML='<div class="emoji">'+icon+'</div><h3>'+name+'</h3><div>اضغطي للدخول ←</div>';
+b.onclick=()=>openSubject(name);
+grid.appendChild(b);
+});
+function openSubject(name){
+currentSubject=name;
+document.getElementById("subjects").classList.add("hidden");
+document.getElementById("welcome").classList.add("hidden");
+document.getElementById("content").classList.remove("hidden");
+document.getElementById("subjectTitle").textContent="مادة "+name;
+document.getElementById("resources").innerHTML="";
+document.getElementById("content").scrollIntoView({behavior:"smooth"});
+}
+function showSection(section,icon){
+document.getElementById("resources").innerHTML=
+'<h2>'+icon+' '+section+' — '+currentSubject+'</h2>'+
+'<div class="item">📌 ستُضاف محتويات هذا القسم هنا.</div>'+
+'<p style="text-align:center">يمكنكِ إضافة الدروس والفروض والاختبارات لاحقًا.</p>';
+}
+function goBack(){
+document.getElementById("content").classList.add("hidden");
+document.getElementById("subjects").classList.remove("hidden");
+document.getElementById("welcome").classList.remove("hidden");
+document.getElementById("subjects").scrollIntoView({behavior:"smooth"});
+}
+</script>
 </body>
 </html>
-```
