@@ -1,97 +1,279 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>قرايتي - السنة الأولى ثانوي</title>
+<title>قرايتي | السنة الأولى ثانوي</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f6f5ff;color:#344466}
-header{background:linear-gradient(120deg,#7299ed,#eaa9d0);color:white;text-align:center;padding:30px 15px 40px;border-radius:0 0 30px 30px}
-header h1{font-size:42px;margin:8px}
-header p{font-size:18px}
-main{max-width:1000px;margin:auto;padding:22px 15px}
-.welcome{text-align:center;background:white;padding:22px;border-radius:22px;box-shadow:0 5px 18px #52618b15}
-button{font-family:inherit;cursor:pointer;border:0;border-radius:14px;padding:12px 20px;font-size:17px;background:#eaa9d0;color:#49365f}
-h2{text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px}
-.card{border:0;background:white;border-radius:20px;padding:20px 10px;text-align:center;box-shadow:0 5px 15px #52618b12;cursor:pointer;color:#344466}
-.card:hover{transform:translateY(-3px)}
-.card .emoji{font-size:35px}
-.card h3{font-size:17px}
-#content{margin-top:22px}
-.item{background:white;margin:10px 0;padding:16px;border-radius:14px}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(135deg,#e4efff,#ffe5f0);
+  color:#263653;
+}
+header{
+  background:#789de8;
+  color:white;
+  text-align:center;
+  padding:28px 12px;
+  border-radius:0 0 28px 28px;
+}
+header h1{margin:0 0 10px;font-size:32px}
+header p{margin:0}
+main{max-width:950px;margin:auto;padding:20px}
+.welcome,.panel{
+  background:white;
+  padding:22px;
+  border-radius:20px;
+  margin-bottom:20px;
+  box-shadow:0 4px 15px #536b891c;
+}
+h2{color:#5279c7}
+button{
+  border:0;
+  border-radius:12px;
+  padding:13px 18px;
+  background:#789de8;
+  color:white;
+  font-size:16px;
+  font-family:inherit;
+  cursor:pointer;
+}
+button:hover{opacity:.85}
+.pink{background:#e99abd}
+.menu,.subjects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(135px,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.tile{
+  background:#e7efff;
+  color:#315da8;
+  padding:20px 10px;
+  border-radius:16px;
+  text-align:center;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+.tile:nth-child(even){background:#ffe5f0;color:#a94370}
+.tile:hover{border-color:#789de8}
+.tile .symbol{font-size:28px;display:block;margin-bottom:9px}
 .hidden{display:none}
-.back{display:block;margin:15px auto}
-footer{text-align:center;padding:25px;color:#65749a}
+.back{margin-bottom:15px;background:#e99abd}
+.lesson{
+  padding:14px;
+  margin-top:10px;
+  border-radius:12px;
+  background:#f4f7ff;
+  border-right:4px solid #789de8;
+}
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  margin:7px 0 12px;
+  border:1px solid #c9d7ee;
+  border-radius:10px;
+  font-family:inherit;
+  font-size:15px;
+}
+textarea{min-height:100px}
+footer{text-align:center;padding:20px;color:#536b89}
 </style>
 </head>
 <body>
+
 <header>
-<h1>🌸 قرايتي 🌸</h1>
-<p>طريقك نحو النجاح والتفوق</p>
-<p>السنة الأولى ثانوي · شعبة الآداب</p>
+  <h1>📚 قرايتي</h1>
+  <p>فضاؤك للتعلم والنجاح — السنة الأولى ثانوي</p>
 </header>
+
 <main>
-<section class="welcome" id="welcome">
-<h2>أهلًا بكِ في عالم قرايتي 💗</h2>
-<p>تعلّمي، راجعي، وتقدّمي نحو أحلامك!</p>
-<button onclick="document.getElementById('subjects').scrollIntoView({behavior:'smooth'})">ابدئي الدراسة 📚</button>
-</section>
-<section id="subjects">
-<h2>🎀 اختاري مادتك الدراسية</h2>
-<div class="grid" id="subjectGrid"></div>
-</section>
-<section id="content" class="hidden">
-<h2 id="subjectTitle"></h2>
-<p style="text-align:center">اختاري القسم الذي تريدين مراجعته</p>
-<div class="grid">
-<button class="card" onclick="showSection('الدروس','📚')"><span class="emoji">📚</span><h3>الدروس</h3></button>
-<button class="card" onclick="showSection('الفروض','📝')"><span class="emoji">📝</span><h3>الفروض</h3></button>
-<button class="card" onclick="showSection('الاختبارات','🎓')"><span class="emoji">🎓</span><h3>الاختبارات</h3></button>
-</div>
-<div id="resources"></div>
-<button class="back" onclick="goBack()">العودة إلى المواد ↩️</button>
-</section>
+  <section id="home" class="welcome">
+    <h2>مرحبا بك في موقع قرايتي 💙🩷</h2>
+    <p>كل دروسك وفروضك واختباراتك في مكان واحد.</p>
+    <button onclick="showPage('categories')">اضغطي هنا للدخول ←</button>
+  </section>
+
+  <section id="categories" class="panel hidden">
+    <h2>اختاري القسم الذي تريدين 📖</h2>
+    <div class="menu">
+      <div class="tile" onclick="showPage('subjects')">
+        <span class="symbol">📚</span>الدروس والمواد
+      </div>
+      <div class="tile" onclick="showPage('homework')">
+        <span class="symbol">📝</span>الفروض
+      </div>
+      <div class="tile" onclick="showPage('exams')">
+        <span class="symbol">📋</span>الاختبارات
+      </div>
+    </div>
+  </section>
+
+  <section id="subjects" class="panel hidden">
+    <button class="back" onclick="showPage('categories')">← رجوع</button>
+    <h2>المواد الدراسية</h2>
+    <p>اختاري المادة لقراءة الدروس المنشورة فيها.</p>
+    <div id="subjectList" class="subjects"></div>
+  </section>
+
+  <section id="content" class="panel hidden">
+    <button class="back" onclick="showPage('subjects')">← المواد</button>
+    <h2 id="contentTitle">الدروس</h2>
+    <div id="lessonList"></div>
+  </section>
+
+  <section id="homework" class="panel hidden">
+    <button class="back" onclick="showPage('categories')">← رجوع</button>
+    <h2>📝 الفروض</h2>
+    <p>اختاري المادة لمراجعة الفروض المنشورة.</p>
+    <div id="homeworkList"></div>
+  </section>
+
+  <section id="exams" class="panel hidden">
+    <button class="back" onclick="showPage('categories')">← رجوع</button>
+    <h2>📋 الاختبارات</h2>
+    <p>اختاري المادة لمراجعة الاختبارات المنشورة.</p>
+    <div id="examList"></div>
+  </section>
+
+  <section id="admin" class="panel hidden">
+    <button class="back" onclick="showPage('categories')">← رجوع</button>
+    <h2>إضافة محتوى دراسي</h2>
+    <p>هذه واجهة تجريبية للإضافة على هذا الجهاز فقط، وليست محمية بكلمة مرور.</p>
+    <label>نوع المحتوى</label>
+    <select id="kind">
+      <option value="lesson">درس</option>
+      <option value="homework">فرض</option>
+      <option value="exam">اختبار</option>
+    </select>
+    <label>المادة</label>
+    <select id="adminSubject"></select>
+    <label>عنوان المحتوى</label>
+    <input id="titleInput" placeholder="مثلا: الحركة والقوة">
+    <label>محتوى الدرس أو رابط الملف</label>
+    <textarea id="bodyInput" placeholder="اكتبي المحتوى أو ضعي رابطا مباشرا لملف منشور"></textarea>
+    <button onclick="addContent()">إضافة</button>
+    <p id="adminMessage"></p>
+  </section>
 </main>
-<footer>💙 قرايتي — معًا نحو النجاح 💗</footer>
+
+<footer>قرايتي 💙🩷 — طريقك نحو النجاح</footer>
+
 <script>
-const subjects=[
-["اللغة العربية","📖"],["اللغة الفرنسية","🇫🇷"],["اللغة الإنجليزية","🔤"],
-["التاريخ والجغرافيا","🌍"],["العلوم الإسلامية","🌙"],["الفلسفة","💭"],
-["الرياضيات","➗"],["علوم الطبيعة والحياة","🌿"],["الإعلام الآلي","💻"],
-["التربية الفنية التشكيلية","🎨"]
+const subjects = [
+  "اللغة العربية",
+  "اللغة الفرنسية",
+  "اللغة الإنجليزية",
+  "الرياضيات",
+  "الفيزياء",
+  "علوم الطبيعة والحياة",
+  "التاريخ والجغرافيا",
+  "التربية الإسلامية",
+  "الإعلام الآلي",
+  "التربية الفنية التشكيلية"
 ];
-let currentSubject="";
-const grid=document.getElementById("subjectGrid");
-subjects.forEach(([name,icon])=>{
-const b=document.createElement("button");
-b.className="card";
-b.innerHTML='<div class="emoji">'+icon+'</div><h3>'+name+'</h3><div>اضغطي للدخول ←</div>';
-b.onclick=()=>openSubject(name);
-grid.appendChild(b);
-});
-function openSubject(name){
-currentSubject=name;
-document.getElementById("subjects").classList.add("hidden");
-document.getElementById("welcome").classList.add("hidden");
-document.getElementById("content").classList.remove("hidden");
-document.getElementById("subjectTitle").textContent="مادة "+name;
-document.getElementById("resources").innerHTML="";
-document.getElementById("content").scrollIntoView({behavior:"smooth"});
+
+let data = [];
+let currentSubject = "";
+
+function showPage(id) {
+  document.querySelectorAll("main > section").forEach(section => {
+    section.classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
+  window.scrollTo(0,0);
 }
-function showSection(section,icon){
-document.getElementById("resources").innerHTML=
-'<h2>'+icon+' '+section+' — '+currentSubject+'</h2>'+
-'<div class="item">📌 ستُضاف محتويات هذا القسم هنا.</div>'+
-'<p style="text-align:center">يمكنكِ إضافة الدروس والفروض والاختبارات لاحقًا.</p>';
+
+function makeSubjects() {
+  document.getElementById("subjectList").innerHTML = "";
+  document.getElementById("adminSubject").innerHTML = "";
+  subjects.forEach((subject,i) => {
+    const tile = document.createElement("div");
+    tile.className = "tile";
+    tile.innerHTML = '<span class="symbol">' +
+      ["📖","🇫🇷","🇬🇧","➗","⚛️","🌿","🌍","🕌","💻","🎨"][i] +
+      '</span>';
+    tile.appendChild(document.createTextNode(subject));
+    tile.onclick = () => openSubject(subject);
+    document.getElementById("subjectList").appendChild(tile);
+
+    const option = document.createElement("option");
+    option.value = subject;
+    option.textContent = subject;
+    document.getElementById("adminSubject").appendChild(option);
+  });
 }
-function goBack(){
-document.getElementById("content").classList.add("hidden");
-document.getElementById("subjects").classList.remove("hidden");
-document.getElementById("welcome").classList.remove("hidden");
-document.getElementById("subjects").scrollIntoView({behavior:"smooth"});
+
+function openSubject(subject) {
+  currentSubject = subject;
+  document.getElementById("contentTitle").textContent = subject;
+  const list = document.getElementById("lessonList");
+  list.innerHTML = "";
+  const items = data.filter(item =>
+    item.subject === subject && item.kind === "lesson"
+  );
+  if (!items.length) {
+    list.textContent = "لا توجد دروس منشورة في هذه المادة حاليا.";
+  }
+  items.forEach(item => renderItem(item,list));
+  showPage("content");
 }
+
+function renderItem(item,container) {
+  const div = document.createElement("div");
+  div.className = "lesson";
+  const heading = document.createElement("h3");
+  heading.textContent = item.title;
+  const paragraph = document.createElement("p");
+  paragraph.textContent = item.body;
+  div.append(heading,paragraph);
+  container.appendChild(div);
+}
+
+function renderType(kind,id) {
+  const list = document.getElementById(id);
+  list.innerHTML = "";
+  const items = data.filter(item => item.kind === kind);
+  if (!items.length) {
+    list.textContent = "لا يوجد محتوى منشور حاليا.";
+  }
+  items.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "lesson";
+    const heading = document.createElement("h3");
+    heading.textContent = item.subject + " — " + item.title;
+    const paragraph = document.createElement("p");
+    paragraph.textContent = item.body;
+    div.append(heading,paragraph);
+    list.appendChild(div);
+  });
+}
+
+function addContent() {
+  const title = document.getElementById("titleInput").value.trim();
+  const body = document.getElementById("bodyInput").value.trim();
+  const kind = document.getElementById("kind").value;
+  const subject = document.getElementById("adminSubject").value;
+  if (!title || !body) {
+    document.getElementById("adminMessage").textContent =
+      "يرجى كتابة العنوان والمحتوى أولا.";
+    return;
+  }
+  data.push({title,body,kind,subject});
+  document.getElementById("adminMessage").textContent =
+    "أضيف المحتوى مؤقتا في هذه الصفحة. لن يظهر للزوار الآخرين.";
+  document.getElementById("titleInput").value = "";
+  document.getElementById("bodyInput").value = "";
+  renderType("homework","homeworkList");
+  renderType("exam","examList");
+}
+
+makeSubjects();
+renderType("homework","homeworkList");
+renderType("exam","examList");
 </script>
 </body>
 </html>
