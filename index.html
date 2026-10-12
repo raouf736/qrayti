@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>قرايتي | السنة الأولى ثانوي</title>
+
 <style>
 *{box-sizing:border-box}
 body{
@@ -14,77 +15,55 @@ body{
   color:#263653;
 }
 header{
-  background:#789de8;
-  color:white;
-  text-align:center;
-  padding:28px 12px;
-  border-radius:0 0 28px 28px;
+  background:#789de8;color:white;text-align:center;
+  padding:28px 12px;border-radius:0 0 28px 28px;
 }
 header h1{margin:0 0 10px;font-size:32px}
 header p{margin:0}
 main{max-width:950px;margin:auto;padding:20px}
 .welcome,.panel{
-  background:white;
-  padding:22px;
-  border-radius:20px;
-  margin-bottom:20px;
-  box-shadow:0 4px 15px #536b891c;
+  background:white;padding:22px;border-radius:20px;
+  margin-bottom:20px;box-shadow:0 4px 15px #536b891c;
 }
 h2{color:#5279c7}
 button{
-  border:0;
-  border-radius:12px;
-  padding:13px 18px;
-  background:#789de8;
-  color:white;
-  font-size:16px;
-  font-family:inherit;
-  cursor:pointer;
+  border:0;border-radius:12px;padding:13px 18px;
+  background:#789de8;color:white;font-size:16px;
+  font-family:inherit;cursor:pointer;margin:4px 0;
 }
 button:hover{opacity:.85}
-.pink{background:#e99abd}
+.pink,.back{background:#e99abd}
 .menu,.subjects{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(135px,1fr));
-  gap:12px;
-  margin-top:18px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));
+  gap:12px;margin-top:18px;
 }
 .tile{
-  background:#e7efff;
-  color:#315da8;
-  padding:20px 10px;
-  border-radius:16px;
-  text-align:center;
-  cursor:pointer;
+  background:#e7efff;color:#315da8;padding:20px 10px;
+  border-radius:16px;text-align:center;cursor:pointer;
   border:2px solid transparent;
 }
 .tile:nth-child(even){background:#ffe5f0;color:#a94370}
 .tile:hover{border-color:#789de8}
 .tile .symbol{font-size:28px;display:block;margin-bottom:9px}
-.hidden{display:none}
-.back{margin-bottom:15px;background:#e99abd}
+.hidden{display:none!important}
 .lesson{
-  padding:14px;
-  margin-top:10px;
-  border-radius:12px;
-  background:#f4f7ff;
-  border-right:4px solid #789de8;
+  padding:14px;margin-top:10px;border-radius:12px;
+  background:#f4f7ff;border-right:4px solid #789de8;
+  overflow-wrap:anywhere;
 }
 input,textarea,select{
-  width:100%;
-  padding:12px;
-  margin:7px 0 12px;
-  border:1px solid #c9d7ee;
-  border-radius:10px;
-  font-family:inherit;
-  font-size:15px;
+  width:100%;padding:12px;margin:7px 0 12px;
+  border:1px solid #c9d7ee;border-radius:10px;
+  font-family:inherit;font-size:15px;
 }
 textarea{min-height:100px}
 footer{text-align:center;padding:20px;color:#536b89}
+.note{background:#fff5df;padding:12px;border-radius:10px}
+#loginMessage,#adminMessage{overflow-wrap:anywhere}
 </style>
 </head>
-<body>
 
+<body>
 <header>
   <h1>📚 قرايتي</h1>
   <p>فضاؤك للتعلم والنجاح — السنة الأولى ثانوي</p>
@@ -95,6 +74,25 @@ footer{text-align:center;padding:20px;color:#536b89}
     <h2>مرحبا بك في موقع قرايتي 💙🩷</h2>
     <p>كل دروسك وفروضك واختباراتك في مكان واحد.</p>
     <button onclick="showPage('categories')">اضغطي هنا للدخول ←</button>
+    <br>
+    <button class="pink" onclick="showPage('login')">🔐 دخول صاحبة الموقع</button>
+  </section>
+
+  <section id="login" class="panel hidden">
+    <button class="back" onclick="showPage('home')">← رجوع</button>
+    <h2>🔐 تسجيل دخول صاحبة الموقع</h2>
+    <p>هذه الصفحة مخصصة للحساب المصرّح له بإدارة الموقع.</p>
+    <form id="loginForm">
+      <label for="email">البريد الإلكتروني</label>
+      <input id="email" type="email" autocomplete="username"
+             placeholder="أدخلي بريدك الإلكتروني" required>
+      <label for="password">كلمة السر</label>
+      <input id="password" type="password"
+             autocomplete="current-password"
+             placeholder="أدخلي كلمة السر" required>
+      <button type="submit">دخول</button>
+    </form>
+    <p id="loginMessage" role="status"></p>
   </section>
 
   <section id="categories" class="panel hidden">
@@ -110,6 +108,8 @@ footer{text-align:center;padding:20px;color:#536b89}
         <span class="symbol">📋</span>الاختبارات
       </div>
     </div>
+    <button id="adminButton" class="pink hidden"
+            onclick="showPage('admin')">⚙️ لوحة الإدارة</button>
   </section>
 
   <section id="subjects" class="panel hidden">
@@ -128,41 +128,84 @@ footer{text-align:center;padding:20px;color:#536b89}
   <section id="homework" class="panel hidden">
     <button class="back" onclick="showPage('categories')">← رجوع</button>
     <h2>📝 الفروض</h2>
-    <p>اختاري المادة لمراجعة الفروض المنشورة.</p>
     <div id="homeworkList"></div>
   </section>
 
   <section id="exams" class="panel hidden">
     <button class="back" onclick="showPage('categories')">← رجوع</button>
     <h2>📋 الاختبارات</h2>
-    <p>اختاري المادة لمراجعة الاختبارات المنشورة.</p>
     <div id="examList"></div>
   </section>
 
   <section id="admin" class="panel hidden">
     <button class="back" onclick="showPage('categories')">← رجوع</button>
-    <h2>إضافة محتوى دراسي</h2>
-    <p>هذه واجهة تجريبية للإضافة على هذا الجهاز فقط، وليست محمية بكلمة مرور.</p>
-    <label>نوع المحتوى</label>
-    <select id="kind">
-      <option value="lesson">درس</option>
-      <option value="homework">فرض</option>
-      <option value="exam">اختبار</option>
-    </select>
-    <label>المادة</label>
-    <select id="adminSubject"></select>
-    <label>عنوان المحتوى</label>
-    <input id="titleInput" placeholder="مثلا: الحركة والقوة">
-    <label>محتوى الدرس أو رابط الملف</label>
-    <textarea id="bodyInput" placeholder="اكتبي المحتوى أو ضعي رابطا مباشرا لملف منشور"></textarea>
-    <button onclick="addContent()">إضافة</button>
-    <p id="adminMessage"></p>
+    <h2>⚙️ لوحة إدارة قرايتي</h2>
+    <p>أنتِ في لوحة إدارة المحتوى.</p>
+    <p class="note">يمكنك إضافة نص أو رابط لملف منشور. رفع الصور مباشرة غير متوفر في هذه النسخة.</p>
+
+    <form id="contentForm">
+      <label for="kind">نوع المحتوى</label>
+      <select id="kind">
+        <option value="lesson">درس</option>
+        <option value="homework">فرض</option>
+        <option value="exam">اختبار</option>
+      </select>
+
+      <label for="adminSubject">المادة</label>
+      <select id="adminSubject"></select>
+
+      <label for="titleInput">عنوان المحتوى</label>
+      <input id="titleInput" placeholder="مثلا: الحركة والقوة" required>
+
+      <label for="bodyInput">محتوى الدرس أو رابط الملف</label>
+      <textarea id="bodyInput"
+                placeholder="اكتبي المحتوى أو ضعي رابط الملف"
+                required></textarea>
+
+      <button id="addButton" type="submit">حفظ المحتوى</button>
+    </form>
+
+    <p id="adminMessage" role="status"></p>
+    <button class="pink" onclick="logout()">تسجيل الخروج</button>
   </section>
 </main>
 
 <footer>قرايتي 💙🩷 — طريقك نحو النجاح</footer>
 
-<script>
+<script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDobo2D-L3yhSmJMYfpUo5rBgGAkTulZz0",
+  authDomain: "prog-de-1ere-secodaire.firebaseapp.com",
+  projectId: "prog-de-1ere-secodaire",
+  storageBucket: "prog-de-1ere-secodaire.firebasestorage.app",
+  messagingSenderId: "830311097347",
+  appId: "1:830311097347:web:d91b1a96f475a390345a36",
+  measurementId: "G-YLJS7L0F3Q"
+};
+
+const OWNER_EMAIL = "nnsben60@gmail.com";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
 const subjects = [
   "اللغة العربية",
   "اللغة الفرنسية",
@@ -176,104 +219,260 @@ const subjects = [
   "التربية الفنية التشكيلية"
 ];
 
+const symbols = [
+  "📖","🇫🇷","🇬🇧","➗","⚛️",
+  "🌿","🌍","🕌","💻","🎨"
+];
+
+const collectionForKind = {
+  lesson: "lessons",
+  homework: "announcements",
+  exam: "exams"
+};
+
 let data = [];
 let currentSubject = "";
+let isOwner = false;
 
-function showPage(id) {
+window.showPage = function(id) {
   document.querySelectorAll("main > section").forEach(section => {
     section.classList.add("hidden");
   });
   document.getElementById(id).classList.remove("hidden");
-  window.scrollTo(0,0);
-}
+  window.scrollTo(0, 0);
+};
 
 function makeSubjects() {
-  document.getElementById("subjectList").innerHTML = "";
-  document.getElementById("adminSubject").innerHTML = "";
-  subjects.forEach((subject,i) => {
+  const subjectList = document.getElementById("subjectList");
+  const adminSubject = document.getElementById("adminSubject");
+
+  subjectList.replaceChildren();
+  adminSubject.replaceChildren();
+
+  subjects.forEach((subject, i) => {
     const tile = document.createElement("div");
     tile.className = "tile";
-    tile.innerHTML = '<span class="symbol">' +
-      ["📖","🇫🇷","🇬🇧","➗","⚛️","🌿","🌍","🕌","💻","🎨"][i] +
-      '</span>';
-    tile.appendChild(document.createTextNode(subject));
+
+    const symbol = document.createElement("span");
+    symbol.className = "symbol";
+    symbol.textContent = symbols[i];
+
+    tile.append(symbol, document.createTextNode(subject));
     tile.onclick = () => openSubject(subject);
-    document.getElementById("subjectList").appendChild(tile);
+    subjectList.appendChild(tile);
 
     const option = document.createElement("option");
     option.value = subject;
     option.textContent = subject;
-    document.getElementById("adminSubject").appendChild(option);
+    adminSubject.appendChild(option);
   });
+}
+
+function renderItem(item, container) {
+  const div = document.createElement("div");
+  div.className = "lesson";
+
+  const heading = document.createElement("h3");
+  heading.textContent = item.title || "بدون عنوان";
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = item.body || "";
+
+  div.append(heading, paragraph);
+  container.appendChild(div);
 }
 
 function openSubject(subject) {
   currentSubject = subject;
   document.getElementById("contentTitle").textContent = subject;
+
   const list = document.getElementById("lessonList");
-  list.innerHTML = "";
+  list.replaceChildren();
+
   const items = data.filter(item =>
     item.subject === subject && item.kind === "lesson"
   );
+
   if (!items.length) {
     list.textContent = "لا توجد دروس منشورة في هذه المادة حاليا.";
+  } else {
+    items.forEach(item => renderItem(item, list));
   }
-  items.forEach(item => renderItem(item,list));
+
   showPage("content");
 }
 
-function renderItem(item,container) {
-  const div = document.createElement("div");
-  div.className = "lesson";
-  const heading = document.createElement("h3");
-  heading.textContent = item.title;
-  const paragraph = document.createElement("p");
-  paragraph.textContent = item.body;
-  div.append(heading,paragraph);
-  container.appendChild(div);
-}
-
-function renderType(kind,id) {
+function renderType(kind, id) {
   const list = document.getElementById(id);
-  list.innerHTML = "";
+  list.replaceChildren();
+
   const items = data.filter(item => item.kind === kind);
+
   if (!items.length) {
     list.textContent = "لا يوجد محتوى منشور حاليا.";
+    return;
   }
+
   items.forEach(item => {
     const div = document.createElement("div");
     div.className = "lesson";
+
     const heading = document.createElement("h3");
-    heading.textContent = item.subject + " — " + item.title;
+    heading.textContent = (item.subject || "") + " — " +
+                          (item.title || "بدون عنوان");
+
     const paragraph = document.createElement("p");
-    paragraph.textContent = item.body;
-    div.append(heading,paragraph);
+    paragraph.textContent = item.body || "";
+
+    div.append(heading, paragraph);
     list.appendChild(div);
   });
 }
 
-function addContent() {
+function renderAll() {
+  if (currentSubject) openSubject(currentSubject);
+  renderType("homework", "homeworkList");
+  renderType("exam", "examList");
+}
+
+async function loadData() {
+  try {
+    const results = await Promise.all([
+      getDocs(collection(db, "lessons")),
+      getDocs(collection(db, "announcements")),
+      getDocs(collection(db, "exams"))
+    ]);
+
+    data = [];
+
+    const kinds = ["lesson", "homework", "exam"];
+
+    results.forEach((snapshot, index) => {
+      snapshot.forEach(documentSnapshot => {
+        data.push({
+          ...documentSnapshot.data(),
+          id: documentSnapshot.id,
+          kind: kinds[index]
+        });
+      });
+    });
+
+    renderAll();
+  } catch (error) {
+    console.error(error);
+    document.getElementById("lessonList").textContent =
+      "تعذر تحميل المحتوى. تحققي من اتصال الإنترنت وقواعد Firebase.";
+    document.getElementById("homeworkList").textContent =
+      "تعذر تحميل الفروض حاليا.";
+    document.getElementById("examList").textContent =
+      "تعذر تحميل الاختبارات حاليا.";
+  }
+}
+
+document.getElementById("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const message = document.getElementById("loginMessage");
+  message.textContent = "جارٍ التحقق من الحساب...";
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+
+    if (result.user.email?.toLowerCase() !== OWNER_EMAIL.toLowerCase()) {
+      await signOut(auth);
+      message.textContent = "هذا الحساب غير مصرّح له بإدارة الموقع.";
+      return;
+    }
+
+    message.textContent = "تم تسجيل الدخول بنجاح.";
+    showPage("categories");
+  } catch (error) {
+    console.error(error);
+    message.textContent =
+      "تعذر تسجيل الدخول. تحققي من البريد الإلكتروني وكلمة السر.";
+  }
+});
+
+document.getElementById("contentForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const message = document.getElementById("adminMessage");
+  const button = document.getElementById("addButton");
+
+  if (!auth.currentUser ||
+      auth.currentUser.email?.toLowerCase() !== OWNER_EMAIL.toLowerCase()) {
+    message.textContent = "يجب تسجيل الدخول بالحساب المصرّح له أولا.";
+    return;
+  }
+
   const title = document.getElementById("titleInput").value.trim();
   const body = document.getElementById("bodyInput").value.trim();
   const kind = document.getElementById("kind").value;
   const subject = document.getElementById("adminSubject").value;
+
   if (!title || !body) {
-    document.getElementById("adminMessage").textContent =
-      "يرجى كتابة العنوان والمحتوى أولا.";
+    message.textContent = "اكتبي العنوان والمحتوى أولا.";
     return;
   }
-  data.push({title,body,kind,subject});
-  document.getElementById("adminMessage").textContent =
-    "أضيف المحتوى مؤقتا في هذه الصفحة. لن يظهر للزوار الآخرين.";
-  document.getElementById("titleInput").value = "";
-  document.getElementById("bodyInput").value = "";
-  renderType("homework","homeworkList");
-  renderType("exam","examList");
-}
+
+  button.disabled = true;
+  message.textContent = "جارٍ حفظ المحتوى...";
+
+  try {
+    await addDoc(collection(db, collectionForKind[kind]), {
+      title,
+      body,
+      kind,
+      subject,
+      createdAt: new Date().toISOString()
+    });
+
+    message.textContent = "تم حفظ المحتوى بنجاح.";
+    document.getElementById("titleInput").value = "";
+    document.getElementById("bodyInput").value = "";
+
+    await loadData();
+  } catch (error) {
+    console.error(error);
+    message.textContent =
+      "لم يُحفظ المحتوى. تحققي من تسجيل الدخول وقواعد Firestore.";
+  } finally {
+    button.disabled = false;
+  }
+});
+
+window.logout = async function() {
+  try {
+    await signOut(auth);
+    showPage("home");
+  } catch (error) {
+    console.error(error);
+    document.getElementById("adminMessage").textContent =
+      "تعذر تسجيل الخروج. حاولي مرة أخرى.";
+  }
+};
+
+onAuthStateChanged(auth, async user => {
+  isOwner = Boolean(
+    user && user.email?.toLowerCase() === OWNER_EMAIL.toLowerCase()
+  );
+
+  document.getElementById("adminButton")
+    .classList.toggle("hidden", !isOwner);
+
+  if (user && !isOwner) {
+    await signOut(auth);
+    return;
+  }
+
+  await loadData();
+});
 
 makeSubjects();
-renderType("homework","homeworkList");
-renderType("exam","examList");
+renderAll();
 </script>
 </body>
 </html>
